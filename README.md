@@ -5,7 +5,7 @@ Installation https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/getting-
 
 Documentation is available on aws php sdk https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-pinpoint-2016-12-01.html
 
-## 2. Steps to Buildin customer expereinces with amazon pinpoint
+## 2. Steps to Building customer expereinces with amazon pinpoint
 ### 1. Create a segment in the Application
 ### CreateSegment 
 * Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.
