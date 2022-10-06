@@ -840,3 +840,549 @@ $result = $client->createCampaign([
 #### Members
 * ApplicationId, Required: Yes, Type: string
 
+## 4. Sending messages
+
+### SendMessages 
+* Creates and sends a direct message.
+```
+$result = $client->sendMessages([/* ... */]);
+$promise = $client->sendMessagesAsync([/* ... */]);
+```
+
+#### Parameter Syntax
+```
+$result = $client->sendMessages([
+    'ApplicationId' => '<string>', // REQUIRED
+    'MessageRequest' => [ // REQUIRED
+        'Addresses' => [
+            '<__string>' => [
+                'BodyOverride' => '<string>',
+                'ChannelType' => 'PUSH|GCM|APNS|APNS_SANDBOX|APNS_VOIP|APNS_VOIP_SANDBOX|ADM|SMS|VOICE|EMAIL|BAIDU|CUSTOM|IN_APP',
+                'Context' => ['<string>', ...],
+                'RawContent' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'TitleOverride' => '<string>',
+            ],
+            // ...
+        ],
+        'Context' => ['<string>', ...],
+        'Endpoints' => [
+            '<__string>' => [
+                'BodyOverride' => '<string>',
+                'Context' => ['<string>', ...],
+                'RawContent' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'TitleOverride' => '<string>',
+            ],
+            // ...
+        ],
+        'MessageConfiguration' => [ // REQUIRED
+            'ADMMessage' => [
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Body' => '<string>',
+                'ConsolidationKey' => '<string>',
+                'Data' => ['<string>', ...],
+                'ExpiresAfter' => '<string>',
+                'IconReference' => '<string>',
+                'ImageIconUrl' => '<string>',
+                'ImageUrl' => '<string>',
+                'MD5' => '<string>',
+                'RawContent' => '<string>',
+                'SilentPush' => true || false,
+                'SmallImageIconUrl' => '<string>',
+                'Sound' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'APNSMessage' => [
+                'APNSPushType' => '<string>',
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Badge' => <integer>,
+                'Body' => '<string>',
+                'Category' => '<string>',
+                'CollapseId' => '<string>',
+                'Data' => ['<string>', ...],
+                'MediaUrl' => '<string>',
+                'PreferredAuthenticationMethod' => '<string>',
+                'Priority' => '<string>',
+                'RawContent' => '<string>',
+                'SilentPush' => true || false,
+                'Sound' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'ThreadId' => '<string>',
+                'TimeToLive' => <integer>,
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'BaiduMessage' => [
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Body' => '<string>',
+                'Data' => ['<string>', ...],
+                'IconReference' => '<string>',
+                'ImageIconUrl' => '<string>',
+                'ImageUrl' => '<string>',
+                'RawContent' => '<string>',
+                'SilentPush' => true || false,
+                'SmallImageIconUrl' => '<string>',
+                'Sound' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'TimeToLive' => <integer>,
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'DefaultMessage' => [
+                'Body' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+            ],
+            'DefaultPushNotificationMessage' => [
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Body' => '<string>',
+                'Data' => ['<string>', ...],
+                'SilentPush' => true || false,
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'EmailMessage' => [
+                'Body' => '<string>',
+                'FeedbackForwardingAddress' => '<string>',
+                'FromAddress' => '<string>',
+                'RawEmail' => [
+                    'Data' => <string || resource || Psr\Http\Message\StreamInterface>,
+                ],
+                'ReplyToAddresses' => ['<string>', ...],
+                'SimpleEmail' => [
+                    'HtmlPart' => [
+                        'Charset' => '<string>',
+                        'Data' => '<string>',
+                    ],
+                    'Subject' => [
+                        'Charset' => '<string>',
+                        'Data' => '<string>',
+                    ],
+                    'TextPart' => [
+                        'Charset' => '<string>',
+                        'Data' => '<string>',
+                    ],
+                ],
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+            ],
+            'GCMMessage' => [
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Body' => '<string>',
+                'CollapseKey' => '<string>',
+                'Data' => ['<string>', ...],
+                'IconReference' => '<string>',
+                'ImageIconUrl' => '<string>',
+                'ImageUrl' => '<string>',
+                'Priority' => '<string>',
+                'RawContent' => '<string>',
+                'RestrictedPackageName' => '<string>',
+                'SilentPush' => true || false,
+                'SmallImageIconUrl' => '<string>',
+                'Sound' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'TimeToLive' => <integer>,
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'SMSMessage' => [
+                'Body' => '<string>',
+                'EntityId' => '<string>',
+                'Keyword' => '<string>',
+                'MediaUrl' => '<string>',
+                'MessageType' => 'TRANSACTIONAL|PROMOTIONAL',
+                'OriginationNumber' => '<string>',
+                'SenderId' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'TemplateId' => '<string>',
+            ],
+            'VoiceMessage' => [
+                'Body' => '<string>',
+                'LanguageCode' => '<string>',
+                'OriginationNumber' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'VoiceId' => '<string>',
+            ],
+        ],
+        'TemplateConfiguration' => [
+            'EmailTemplate' => [
+                'Name' => '<string>',
+                'Version' => '<string>',
+            ],
+            'PushTemplate' => [
+                'Name' => '<string>',
+                'Version' => '<string>',
+            ],
+            'SMSTemplate' => [
+                'Name' => '<string>',
+                'Version' => '<string>',
+            ],
+            'VoiceTemplate' => [
+                'Name' => '<string>',
+                'Version' => '<string>',
+            ],
+        ],
+        'TraceId' => '<string>',
+    ],
+]);
+```
+#### Parameter Details, Members
+* ApplicationId, Required: Yes, Type: string
+* MessageRequest, Required: Yes, Type: MessageRequest structure - Specifies the configuration and other settings for a message.
+
+### Result Syntax
+```
+[
+    'MessageResponse' => [
+        'ApplicationId' => '<string>',
+        'EndpointResult' => [
+            '<__string>' => [
+                'Address' => '<string>',
+                'DeliveryStatus' => 'SUCCESSFUL|THROTTLED|TEMPORARY_FAILURE|PERMANENT_FAILURE|UNKNOWN_FAILURE|OPT_OUT|DUPLICATE',
+                'MessageId' => '<string>',
+                'StatusCode' => <integer>,
+                'StatusMessage' => '<string>',
+                'UpdatedToken' => '<string>',
+            ],
+            // ...
+        ],
+        'RequestId' => '<string>',
+        'Result' => [
+            '<__string>' => [
+                'DeliveryStatus' => 'SUCCESSFUL|THROTTLED|TEMPORARY_FAILURE|PERMANENT_FAILURE|UNKNOWN_FAILURE|OPT_OUT|DUPLICATE',
+                'MessageId' => '<string>',
+                'StatusCode' => <integer>,
+                'StatusMessage' => '<string>',
+                'UpdatedToken' => '<string>',
+            ],
+            // ...
+        ],
+    ],
+]
+```
+#### Result Details, Members
+* MessageResponse, Required: Yes, Type: MessageResponse structure - Provides information about the results of a request to send a message to an endpoint address.
+
+### Errors
+* BadRequestException: Provides information about an API request or response.
+* InternalServerErrorException: Provides information about an API request or response.
+* PayloadTooLargeException: Provides information about an API request or response.
+* ForbiddenException: Provides information about an API request or response.
+* NotFoundException: Provides information about an API request or response.
+* MethodNotAllowedException: Provides information about an API request or response.
+* TooManyRequestsException: Provides information about an API request or response.
+
+### SendOTPMessage: 
+* Send an OTP message
+```
+$result = $client->sendOTPMessage([/* ... */]);
+$promise = $client->sendOTPMessageAsync([/* ... */]);
+```
+
+#### Parameter Syntax
+```
+$result = $client->sendOTPMessage([
+    'ApplicationId' => '<string>', // REQUIRED
+    'SendOTPMessageRequestParameters' => [ // REQUIRED
+        'AllowedAttempts' => <integer>,
+        'BrandName' => '<string>', // REQUIRED
+        'Channel' => '<string>', // REQUIRED
+        'CodeLength' => <integer>,
+        'DestinationIdentity' => '<string>', // REQUIRED
+        'EntityId' => '<string>',
+        'Language' => '<string>',
+        'OriginationIdentity' => '<string>', // REQUIRED
+        'ReferenceId' => '<string>', // REQUIRED
+        'TemplateId' => '<string>',
+        'ValidityPeriod' => <integer>,
+    ],
+]);
+```
+#### Parameter Details, Members
+* ApplicationId, Required: Yes, Type: string
+* SendOTPMessageRequestParameters, Required: Yes, Type: SendOTPMessageRequestParameters structure - Send OTP message request parameters.
+
+#### Result Syntax
+```
+[
+    'MessageResponse' => [
+        'ApplicationId' => '<string>',
+        'EndpointResult' => [
+            '<__string>' => [
+                'Address' => '<string>',
+                'DeliveryStatus' => 'SUCCESSFUL|THROTTLED|TEMPORARY_FAILURE|PERMANENT_FAILURE|UNKNOWN_FAILURE|OPT_OUT|DUPLICATE',
+                'MessageId' => '<string>',
+                'StatusCode' => <integer>,
+                'StatusMessage' => '<string>',
+                'UpdatedToken' => '<string>',
+            ],
+            // ...
+        ],
+        'RequestId' => '<string>',
+        'Result' => [
+            '<__string>' => [
+                'DeliveryStatus' => 'SUCCESSFUL|THROTTLED|TEMPORARY_FAILURE|PERMANENT_FAILURE|UNKNOWN_FAILURE|OPT_OUT|DUPLICATE',
+                'MessageId' => '<string>',
+                'StatusCode' => <integer>,
+                'StatusMessage' => '<string>',
+                'UpdatedToken' => '<string>',
+            ],
+            // ...
+        ],
+    ],
+]
+```
+####  Result Details, Members
+* MessageResponse, Required: Yes, Type: MessageResponse structure, Provides information about the results of a request to send a message to an endpoint address.
+
+### Errors
+* BadRequestException: Provides information about an API request or response.
+* InternalServerErrorException: Provides information about an API request or response.
+* PayloadTooLargeException: Provides information about an API request or response.
+* ForbiddenException: Provides information about an API request or response.
+* NotFoundException: Provides information about an API request or response.
+* MethodNotAllowedException: Provides information about an API request or response.
+* TooManyRequestsException: Provides information about an API request or response.
+
+### SendUsersMessages 
+* Creates and sends a message to a list of users.
+```
+$result = $client->sendUsersMessages([/* ... */]);
+$promise = $client->sendUsersMessagesAsync([/* ... */]);
+```
+### Parameter Syntax
+```
+$result = $client->sendUsersMessages([
+    'ApplicationId' => '<string>', // REQUIRED
+    'SendUsersMessageRequest' => [ // REQUIRED
+        'Context' => ['<string>', ...],
+        'MessageConfiguration' => [ // REQUIRED
+            'ADMMessage' => [
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Body' => '<string>',
+                'ConsolidationKey' => '<string>',
+                'Data' => ['<string>', ...],
+                'ExpiresAfter' => '<string>',
+                'IconReference' => '<string>',
+                'ImageIconUrl' => '<string>',
+                'ImageUrl' => '<string>',
+                'MD5' => '<string>',
+                'RawContent' => '<string>',
+                'SilentPush' => true || false,
+                'SmallImageIconUrl' => '<string>',
+                'Sound' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'APNSMessage' => [
+                'APNSPushType' => '<string>',
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Badge' => <integer>,
+                'Body' => '<string>',
+                'Category' => '<string>',
+                'CollapseId' => '<string>',
+                'Data' => ['<string>', ...],
+                'MediaUrl' => '<string>',
+                'PreferredAuthenticationMethod' => '<string>',
+                'Priority' => '<string>',
+                'RawContent' => '<string>',
+                'SilentPush' => true || false,
+                'Sound' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'ThreadId' => '<string>',
+                'TimeToLive' => <integer>,
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'BaiduMessage' => [
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Body' => '<string>',
+                'Data' => ['<string>', ...],
+                'IconReference' => '<string>',
+                'ImageIconUrl' => '<string>',
+                'ImageUrl' => '<string>',
+                'RawContent' => '<string>',
+                'SilentPush' => true || false,
+                'SmallImageIconUrl' => '<string>',
+                'Sound' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'TimeToLive' => <integer>,
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'DefaultMessage' => [
+                'Body' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+            ],
+            'DefaultPushNotificationMessage' => [
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Body' => '<string>',
+                'Data' => ['<string>', ...],
+                'SilentPush' => true || false,
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'EmailMessage' => [
+                'Body' => '<string>',
+                'FeedbackForwardingAddress' => '<string>',
+                'FromAddress' => '<string>',
+                'RawEmail' => [
+                    'Data' => <string || resource || Psr\Http\Message\StreamInterface>,
+                ],
+                'ReplyToAddresses' => ['<string>', ...],
+                'SimpleEmail' => [
+                    'HtmlPart' => [
+                        'Charset' => '<string>',
+                        'Data' => '<string>',
+                    ],
+                    'Subject' => [
+                        'Charset' => '<string>',
+                        'Data' => '<string>',
+                    ],
+                    'TextPart' => [
+                        'Charset' => '<string>',
+                        'Data' => '<string>',
+                    ],
+                ],
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+            ],
+            'GCMMessage' => [
+                'Action' => 'OPEN_APP|DEEP_LINK|URL',
+                'Body' => '<string>',
+                'CollapseKey' => '<string>',
+                'Data' => ['<string>', ...],
+                'IconReference' => '<string>',
+                'ImageIconUrl' => '<string>',
+                'ImageUrl' => '<string>',
+                'Priority' => '<string>',
+                'RawContent' => '<string>',
+                'RestrictedPackageName' => '<string>',
+                'SilentPush' => true || false,
+                'SmallImageIconUrl' => '<string>',
+                'Sound' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'TimeToLive' => <integer>,
+                'Title' => '<string>',
+                'Url' => '<string>',
+            ],
+            'SMSMessage' => [
+                'Body' => '<string>',
+                'EntityId' => '<string>',
+                'Keyword' => '<string>',
+                'MediaUrl' => '<string>',
+                'MessageType' => 'TRANSACTIONAL|PROMOTIONAL',
+                'OriginationNumber' => '<string>',
+                'SenderId' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'TemplateId' => '<string>',
+            ],
+            'VoiceMessage' => [
+                'Body' => '<string>',
+                'LanguageCode' => '<string>',
+                'OriginationNumber' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'VoiceId' => '<string>',
+            ],
+        ],
+        'TemplateConfiguration' => [
+            'EmailTemplate' => [
+                'Name' => '<string>',
+                'Version' => '<string>',
+            ],
+            'PushTemplate' => [
+                'Name' => '<string>',
+                'Version' => '<string>',
+            ],
+            'SMSTemplate' => [
+                'Name' => '<string>',
+                'Version' => '<string>',
+            ],
+            'VoiceTemplate' => [
+                'Name' => '<string>',
+                'Version' => '<string>',
+            ],
+        ],
+        'TraceId' => '<string>',
+        'Users' => [ // REQUIRED
+            '<__string>' => [
+                'BodyOverride' => '<string>',
+                'Context' => ['<string>', ...],
+                'RawContent' => '<string>',
+                'Substitutions' => [
+                    '<__string>' => ['<string>', ...],
+                    // ...
+                ],
+                'TitleOverride' => '<string>',
+            ],
+            // ...
+        ],
+    ],
+]);
+```
+#### Parameter Details, Members
+* ApplicationId, Required: Yes, Type: string
+
