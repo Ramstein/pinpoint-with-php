@@ -5,7 +5,14 @@ Installation https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/getting-
 
 Documentation is available on aws php sdk https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-pinpoint-2016-12-01.html
 
-## 2. Steps to Building customer expereinces with amazon pinpoint
+
+## 2. Steps to Building customer expereinces with amazon pinpoint 
+* Go throught this workshop https://catalog.workshops.aws/amazon-pinpoint-customer-experience/en-US
+* Amazon Pinpoint User Guide https://docs.aws.amazon.com/pinpoint/latest/userguide/welcome.html
+* Amazon Pinpoint Developer Guide https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html
+* Leveraging Amazon Pinpoint Analytics to Improve Application Performance and User Experience | AWS https://www.youtube.com/watch?v=fSDQx5ardmI
+* AWS re:Invent 2019: Build immersive experiences with Amazon Pinpoint Journeys (EUC230-P) https://youtu.be/MK98YQ0pcts?t=975
+
 ### 1. Create a segment in the Application
 ### CreateSegment 
 * Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.
